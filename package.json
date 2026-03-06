@@ -1,0 +1,20 @@
+{
+  "name": "op-net-revenue-vault",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install",
+    "lint": "echo \"no root lint\"",
+    "build": "cd frontend && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "deploy:vault": "node ./scripts/deploy-vault.js"
+  },
+  "dependencies": {
+    "ethers": "^6.13.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
+

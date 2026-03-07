@@ -1,4 +1,4 @@
-import type { VaultStats as VaultStatsType } from "../lib/contracts";
+import type { VaultStats as VaultStatsType } from "../lib/opnet-contracts";
 import { OP_NET_CONFIG } from "../config";
 
 interface Props {

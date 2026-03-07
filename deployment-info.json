@@ -1,0 +1,7 @@
+{
+  "contractAddress": "0x5b9588cfbc5b8e497d98fb9476f1769237f90618",
+  "network": "testnet",
+  "deployedAt": "2026-03-07T02:39:01.824Z",
+  "wasmPath": "C:\\Users\\divin\\opnet-revenue-vault\\contracts\\build\\RevenueVault.wasm",
+  "contractSize": 3842
+}

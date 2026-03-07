@@ -4,7 +4,7 @@ import { VaultStats } from "../components/VaultStats";
 import { DepositForm, WithdrawForm } from "../components/Forms";
 import { CompoundButton } from "../components/CompoundButton";
 import { ActivityFeed } from "../components/ActivityFeed";
-import { getVaultStats, type VaultStats as VaultStatsType } from "../lib/contracts";
+import { getVaultStats, type VaultStats as VaultStatsType } from "../lib/opnet-contracts";
 import { OP_NET_CONFIG } from "../config";
 
 export function App() {

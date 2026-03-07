@@ -1,0 +1,26 @@
+{
+  "network": "testnet",
+  "rpcUrl": "https://testnet.opnet.org",
+  "contracts": {
+    "RevenueVault": {
+      "path": "./contracts/assembly/RevenueVault.ts",
+      "constructorArgs": [
+        "0x0000000000000000000000000000000000000000",
+        "OP_NET Revenue Vault",
+        "rvBTC"
+      ]
+    },
+    "MockYieldSource": {
+      "path": "./contracts/assembly/MockYieldSource.ts",
+      "constructorArgs": [
+        "0x0000000000000000000000000000000000000000",
+        "REVENUE_VAULT_ADDRESS_HERE"
+      ]
+    }
+  },
+  "deployment": {
+    "privateKey": "${DEPLOYER_PRIVATE_KEY}",
+    "gasLimit": 5000000,
+    "confirmations": 2
+  }
+}

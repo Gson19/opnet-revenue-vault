@@ -1,20 +1,16 @@
 {
-  "name": "op-net-revenue-vault",
+  "name": "opnet-revenue-vault",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "install:all": "npm install && cd frontend && npm install",
-    "lint": "echo \"no root lint\"",
-    "build": "cd frontend && npm run build",
-    "dev": "cd frontend && npm run dev",
-    "deploy:vault": "node ./scripts/deploy-vault.js"
+    "build:frontend": "cd frontend && npm run build",
+    "dev:frontend": "cd frontend && npm run dev"
   },
   "dependencies": {
-    "ethers": "^6.13.2",
+    "opnet": "^1.8.0",
+    "@btc-vision/transaction": "^1.7.31",
     "dotenv": "^16.4.5"
-  },
-  "devDependencies": {
-    "typescript": "^5.6.3"
   }
 }
-

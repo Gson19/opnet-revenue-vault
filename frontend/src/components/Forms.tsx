@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { deposit, withdraw } from "../lib/contracts";
+import { deposit, withdraw } from "../lib/opnet-contracts";
 import { OP_NET_CONFIG } from "../config";
 
 interface BaseProps {
@@ -16,8 +16,15 @@ export function DepositForm({ tokenSymbol, onCompleted }: BaseProps) {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    
     try {
-      await deposit(amount);
+      // Ensure amount is a defined string
+      const amountStr = (amount || "").trim();
+      if (!amountStr) {
+        throw new Error("Please enter an amount");
+      }
+      
+      await deposit(amountStr);
       setAmount("");
       onCompleted();
     } catch (err: any) {
@@ -45,7 +52,13 @@ export function DepositForm({ tokenSymbol, onCompleted }: BaseProps) {
             min="0"
             step={1 / 10 ** OP_NET_CONFIG.underlyingTokenDecimals}
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              // Only allow positive numbers and empty string
+              if (value === "" || (parseFloat(value) >= 0 && !isNaN(parseFloat(value)))) {
+                setAmount(value);
+              }
+            }}
             className="flex-1 bg-transparent text-sm text-slate-50 outline-none"
             placeholder={`0.0 ${tokenSymbol}`}
           />
@@ -54,7 +67,7 @@ export function DepositForm({ tokenSymbol, onCompleted }: BaseProps) {
       </div>
       <button
         type="submit"
-        disabled={loading || !amount}
+        disabled={loading || !amount || parseFloat(amount) <= 0}
         className="mt-1 w-full rounded-xl bg-brand-600 px-3 py-2 text-sm font-medium text-slate-50 shadow-lg shadow-sky-500/30 transition hover:bg-brand-500"
       >
         {loading ? "Depositing…" : `Deposit ${tokenSymbol}`}

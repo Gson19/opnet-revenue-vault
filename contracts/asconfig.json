@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "release": {
+      "binaryFile": "build/RevenueVault.wasm",
+      "textFile": "build/RevenueVault.wat",
+      "sourceMap": true,
+      "optimize": true,
+      "exportRuntime": true
+    }
+  },
+  "options": {
+    "bindings": "esm"
+  }
+}

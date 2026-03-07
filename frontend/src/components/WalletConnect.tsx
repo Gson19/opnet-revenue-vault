@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProvider } from "../lib/contracts";
+import { getOPNetProvider } from "../lib/opnet-contracts";
 
 interface WalletConnectProps {
   onConnected(address: string): void;
@@ -11,32 +11,40 @@ export function WalletConnect({ onConnected }: WalletConnectProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const anyWindow = window as any;
-    const injected =
-      anyWindow.opnet ||
-      (anyWindow.ethereum && anyWindow.ethereum.isOPNet) ||
-      anyWindow.ethereum;
+    // Check if OP_Wallet is already connected
+    const checkConnection = async () => {
+      try {
+        const provider = await getOPNetProvider();
+        const accounts = await provider.requestAccounts();
+        if (accounts && accounts.length > 0) {
+          const addr = accounts[0];
+          setAddress(addr);
+          onConnected(addr);
+        }
+      } catch (e) {
+        // Not connected, that's okay
+      }
+    };
 
-    if (!injected) return;
-
-    injected.on?.("accountsChanged", (accounts: string[]) => {
-      const next = accounts[0] ?? null;
-      setAddress(next);
-      if (next) onConnected(next);
-    });
+    checkConnection();
   }, [onConnected]);
 
   const connect = async () => {
     setConnecting(true);
     setError(null);
     try {
-      const provider = await getProvider();
-      const accounts = await provider.send("eth_requestAccounts", []);
+      const provider = await getOPNetProvider();
+      const accounts = await provider.requestAccounts();
+      
+      if (!accounts || accounts.length === 0) {
+        throw new Error("No accounts returned from wallet");
+      }
+      
       const addr = accounts[0];
       setAddress(addr);
       onConnected(addr);
     } catch (e: any) {
-      setError(e.message ?? "Failed to connect wallet");
+      setError(e.message ?? "Failed to connect OP_NET wallet");
     } finally {
       setConnecting(false);
     }

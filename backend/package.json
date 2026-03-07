@@ -1,0 +1,25 @@
+{
+  "name": "opnet-revenue-vault-backend",
+  "version": "1.0.0",
+  "description": "OP_NET Revenue Vault Backend API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "opnet": "1.8.0",
+    "@btc-vision/as-bignum": "^0.1.0",
+    "@btc-vision/btc-runtime": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/cors": "^2.8.13",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "type": "module"
+}

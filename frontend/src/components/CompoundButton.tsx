@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { compoundNow } from "../lib/contracts";
+import { compoundNow } from "../lib/opnet-contracts";
 
 interface Props {
   onCompleted(): void;

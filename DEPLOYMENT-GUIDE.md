@@ -6,6 +6,10 @@
 - **Problem**: Old `contracts.ts` file still imported ethers.js
 - **Solution**: Deleted old file and using only `opnet-contracts.ts`
 
+### ✅ **Fixed Module Resolution**
+- **Problem**: Could not resolve "../lib/opnet-contracts" on Vercel
+- **Solution**: Added TypeScript baseUrl and paths configuration
+
 ### ✅ **Added Vercel Configuration**
 - **Root**: `vercel.json` with proper build commands
 - **Frontend**: `frontend/vercel.json` with routing
@@ -31,8 +35,8 @@ git push origin main
 
 ### 3. **Configure Build Settings**
 - **Framework Preset**: Vite
-- **Root Directory**: `./frontend`
-- **Build Command**: `npm run build`
+- **Root Directory**: `frontend` (IMPORTANT!)
+- **Build Command**: `npm ci && npm run build`
 - **Output Directory**: `dist`
 
 ### 4. **Environment Variables**
@@ -51,7 +55,7 @@ VITE_UNDERLYING_DECIMALS=8
 ## 🔧 **Local Build Test**
 ```bash
 cd frontend
-npm install
+npm ci
 npm run build
 # Should succeed without errors
 ```
@@ -61,17 +65,25 @@ npm run build
 ### **Issue**: "Cannot find module 'ethers'"
 - **Solution**: Ethers.js removed from package.json
 
-### **Issue**: "window.opnet is not defined"
-- **Solution**: Uses OP_NET wallet extension
+### **Issue**: "Could not resolve '../lib/opnet-contracts'"
+- **Solution**: Added TypeScript baseUrl and paths
 
-### **Issue**: Build fails on Vercel
+### **Issue**: "Build fails on Vercel"
 - **Solution**: All dependencies resolved, build config fixed
 
 ## ✅ **Verification Checklist**
-- [ ] Frontend builds locally: `npm run build`
-- [ ] No ethers.js imports
-- [ ] Environment variables configured
-- [ ] Vercel.json exists in root
-- [ ] Git repository pushed
+- [x] Frontend builds locally: `npm run build`
+- [x] No ethers.js imports
+- [x] Environment variables configured
+- [x] Vercel.json exists in root
+- [x] TypeScript paths configured
+- [x] Git repository pushed
+- [x] Module resolution fixed
+
+## 🎯 **Latest Fixes Applied**
+- **rootDirectory**: "frontend" in vercel.json
+- **buildCommand**: "npm ci && npm run build" 
+- **baseUrl & paths**: Added to tsconfig.json
+- **Module resolution**: Fixed for Vercel build
 
 The deployment should now work correctly on Vercel! 🎉

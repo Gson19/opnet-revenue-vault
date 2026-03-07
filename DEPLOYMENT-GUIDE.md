@@ -68,8 +68,8 @@ npm run build
 ### **Issue**: "Could not resolve '../lib/opnet-contracts'"
 - **Solution**: Added TypeScript baseUrl and paths
 
-### **Issue**: "Build fails on Vercel"
-- **Solution**: All dependencies resolved, build config fixed
+### **Issue**: "Due to `builds` existing in your configuration file, the Build and Development Settings will not apply"
+- **Solution**: Removed deprecated `builds` array from vercel.json
 
 ## ✅ **Verification Checklist**
 - [x] Frontend builds locally: `npm run build`
@@ -85,5 +85,7 @@ npm run build
 - **buildCommand**: "npm ci && npm run build" 
 - **baseUrl & paths**: Added to tsconfig.json
 - **Module resolution**: Fixed for Vercel build
+- **Deprecated builds**: Removed from vercel.json (fixes warning)
+- **Environment variables**: Added VITE_OPSCAN_BASE_URL
 
-The deployment should now work correctly on Vercel! 🎉
+The deployment should now work correctly on Vercel without warnings! 🎉

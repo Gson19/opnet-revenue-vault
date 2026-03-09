@@ -61,8 +61,8 @@ artifacts/
 typechain/
 typechain-types/
 
-# Foundry files
-lib/
+# Foundry files (root-level only)
+/lib/
 out/
 
 # Vercel

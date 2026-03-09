@@ -3,12 +3,6 @@
   "buildCommand": "npm ci && npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
   "env": {
     "VITE_OP_NET_RPC_URL": "https://testnet.opnet.org",
     "VITE_REVENUE_VAULT_ADDRESS": "0x5b9588cfbc5b8e497d98fb9476f1769237f90618",
